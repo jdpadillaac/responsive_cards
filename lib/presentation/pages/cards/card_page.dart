@@ -7,6 +7,8 @@ class CardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
+
     return Scaffold(
       backgroundColor: cardPagebackGroudColor,
       body: Container(
@@ -25,13 +27,30 @@ class CardPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return CardItem(
-                    color: Colors.primaries[index % Colors.primaries.length],
-                  );
-                },
+              child: AnimatedSwitcher(
+                duration: const Duration(seconds: 2),
+                child: orientation == Orientation.portrait
+                    ? ListView.builder(
+                        itemCount: 10,
+                        itemBuilder: (context, index) {
+                          return CardItem(
+                            color: Colors
+                                .primaries[index % Colors.primaries.length],
+                          );
+                        },
+                      )
+                    : GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: 10,
+                        itemBuilder: (context, index) {
+                          return CardItem(
+                            color: Colors
+                                .primaries[index % Colors.primaries.length],
+                          );
+                        },
+                      ),
               ),
             ),
           ],

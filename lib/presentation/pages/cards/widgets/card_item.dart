@@ -6,11 +6,17 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const TextStyle nameStyle = TextStyle(color: Colors.white, fontSize: 18);
+    const TextStyle cardNumberStyle = TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+    );
+    const TextStyle balanceStyle = TextStyle(color: Colors.white, fontSize: 18);
     return Padding(
       padding: EdgeInsets.all(10),
       child: Container(
         padding: EdgeInsets.all(10),
-        height: 160,
+        height: 170,
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -21,7 +27,18 @@ class CardItem extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text('Card'),
+        child: Padding(
+          padding: EdgeInsets.all(25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text('\$ 30.575', style: balanceStyle),
+              Spacer(),
+              Text('4010 **** **** 41547', style: cardNumberStyle),
+              Text('Jonatan Padilla', style: nameStyle),
+            ],
+          ),
+        ),
       ),
     );
   }
